@@ -1,0 +1,16 @@
+{
+  "functions": {
+    "api/contact.js": {
+      "maxDuration": 10
+    }
+  },
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/studio", "dest": "/studio/index.html" },
+    { "src": "/arthra", "dest": "/arthra/index.html" },
+    { "src": "/astiko-dikaio-thessaloniki", "dest": "/astiko-dikaio-thessaloniki/index.html" },
+    { "src": "/poiniko-dikaio-thessaloniki", "dest": "/poiniko-dikaio-thessaloniki/index.html" },
+    { "src": "/emporiko-dikaio-thessaloniki", "dest": "/emporiko-dikaio-thessaloniki/index.html" },
+    { "src": "/dioikitiko-dikaio-thessaloniki", "dest": "/dioikitiko-dikaio-thessaloniki/index.html" }
+  ]
+}
