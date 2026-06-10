@@ -27,7 +27,7 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         from: 'Επικοινωνία <noreply@evangeloulaw.gr>',
-        to: ['elpidaev63@gmail.com'],
+        to: ['kostas1685@gmail.com'],
         reply_to: email,
         subject: `Νέο μήνυμα από ${name} ${surname || ''} – ${area || 'Γενικό'}`,
         html: `
