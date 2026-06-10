@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Νομικά Άρθρα & Ειδήσεις | Ελπίδα Ευαγγέλου – Δικηγορικό Γραφείο</title>
+<meta name="description" content="Νομικά άρθρα, συμβουλές και ειδήσεις από το δικηγορικό γραφείο Ελπίδας Ευαγγέλου στη Θεσσαλονίκη. Αστικό, Ποινικό, Εμπορικό και Διοικητικό Δίκαιο.">
+<link rel="canonical" href="https://www.evangeloulaw.gr/arthra">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Νομικά Άρθρα – Ελπίδα Ευαγγέλου",
+  "url": "https://www.evangeloulaw.gr/arthra",
+  "publisher": {
+    "@type": "LegalService",
+    "name": "Δικηγορικό Γραφείο Ελπίδας Ευαγγέλου",
+    "telephone": "+306932692757",
+    "address": { "@type": "PostalAddress", "streetAddress": "26ης Οκτωβρίου 14", "addressLocality": "Θεσσαλονίκη", "postalCode": "546 27", "addressCountry": "GR" }
+  }
+}
+</script>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #F8F9FA; --bg-section: #EDEEF0; --navy: #1E293B; --navy-mid: #2E3F55;
+  --gold: #A8895A; --gold-light: #C4A97A; --gold-pale: #F0E8D8;
+  --text: #4A5568; --muted: #718096; --border: rgba(30,41,59,0.1);
+  --border-gold: rgba(168,137,90,0.3); --white: #FFFFFF;
+}
+body { font-family: 'Raleway', sans-serif; background: var(--bg); color: var(--navy); overflow-x: hidden; }
+
+/* NAV */
+nav { position: sticky; top: 0; z-index: 100; background: var(--white); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 5vw; height: 68px; box-shadow: 0 1px 8px rgba(30,41,59,0.06); }
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.logo-icon { width: 40px; height: 40px; border: 1.5px solid var(--gold); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--gold); font-weight: 600; }
+.logo-text { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--navy); line-height: 1.2; font-weight: 400; }
+.logo-text span { display: block; font-size: 9px; letter-spacing: 2.5px; color: var(--gold); font-family: 'Raleway', sans-serif; font-weight: 500; text-transform: uppercase; }
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links a { color: var(--text); text-decoration: none; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--gold); }
+.nav-cta { background: var(--gold); color: var(--white); padding: 10px 22px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-family: 'Raleway', sans-serif; font-weight: 500; border: none; cursor: pointer; transition: all 0.2s; text-decoration: none; }
+.nav-cta:hover { background: var(--navy-mid); }
+
+/* BREADCRUMB */
+.breadcrumb { background: var(--bg-section); padding: 12px 5vw; border-bottom: 1px solid var(--border); font-size: 11px; color: var(--muted); }
+.breadcrumb a { color: var(--gold); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb span { margin: 0 6px; }
+
+/* PAGE HERO */
+.page-hero { background: var(--navy); padding: 56px 5vw; position: relative; overflow: hidden; }
+.page-hero::before { content: ''; position: absolute; right: -100px; top: -100px; width: 400px; height: 400px; border: 1px solid rgba(168,137,90,0.1); border-radius: 50%; }
+.page-eyebrow { font-size: 9px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; font-weight: 600; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+.page-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+.page-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 4.5vw, 54px); font-weight: 300; color: var(--white); line-height: 1.15; margin-bottom: 12px; }
+.page-hero h1 em { font-style: italic; color: var(--gold); }
+.page-hero p { font-size: 13px; color: rgba(255,255,255,0.6); max-width: 540px; line-height: 1.8; }
+
+/* FILTER BAR */
+.filter-bar { background: var(--white); border-bottom: 1px solid var(--border); padding: 0 5vw; display: flex; align-items: center; gap: 0; overflow-x: auto; }
+.filter-btn { padding: 16px 20px; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; color: var(--muted); cursor: pointer; border: none; background: none; font-family: 'Raleway', sans-serif; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; }
+.filter-btn:hover { color: var(--gold); }
+.filter-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+/* CONTENT */
+.content-wrap { max-width: 1200px; margin: 0 auto; padding: 48px 5vw; }
+
+/* GRID */
+.articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+
+/* ARTICLE CARD */
+.article-card { background: var(--white); border: 1px solid var(--border); overflow: hidden; transition: all 0.25s; display: flex; flex-direction: column; }
+.article-card:hover { box-shadow: 0 8px 32px rgba(30,41,59,0.1); border-color: var(--gold-light); transform: translateY(-2px); }
+.card-cat-bar { height: 3px; background: var(--gold); }
+.card-body { padding: 24px 24px 20px; flex: 1; display: flex; flex-direction: column; }
+.card-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.card-cat { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); font-weight: 600; background: var(--gold-pale); padding: 3px 9px; }
+.card-date { font-size: 10px; color: var(--muted); }
+.card-title { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 600; color: var(--navy); line-height: 1.25; margin-bottom: 10px; }
+.card-excerpt { font-size: 12px; color: var(--muted); line-height: 1.8; flex: 1; }
+.card-footer { padding: 16px 24px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+.read-more { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: gap 0.2s; }
+.article-card:hover .read-more { gap: 10px; }
+
+/* FEATURED CARD */
+.featured-card { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--border); background: var(--white); transition: all 0.25s; overflow: hidden; }
+.featured-card:hover { box-shadow: 0 8px 32px rgba(30,41,59,0.1); border-color: var(--gold-light); }
+.featured-left { background: var(--navy); padding: 48px 40px; display: flex; flex-direction: column; justify-content: center; position: relative; }
+.featured-left::after { content: ''; position: absolute; inset: 12px; border: 1px solid rgba(168,137,90,0.15); pointer-events: none; }
+.featured-num { font-family: 'Cormorant Garamond', serif; font-size: 80px; color: rgba(168,137,90,0.15); font-weight: 300; line-height: 1; margin-bottom: 16px; }
+.featured-label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 12px; }
+.featured-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 2.5vw, 32px); font-weight: 300; color: var(--white); line-height: 1.2; margin-bottom: 12px; }
+.featured-title em { font-style: italic; color: var(--gold); }
+.featured-right { padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+.featured-cat { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); font-weight: 600; background: var(--gold-pale); padding: 3px 9px; display: inline-block; margin-bottom: 16px; }
+.featured-excerpt { font-size: 13px; color: var(--text); line-height: 1.9; margin-bottom: 24px; }
+.btn-read { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: var(--white); padding: 12px 24px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; font-family: 'Raleway', sans-serif; text-decoration: none; transition: background 0.2s; border: none; cursor: pointer; }
+.btn-read:hover { background: var(--navy-mid); }
+
+/* EMPTY / LOADING */
+.state-msg { text-align: center; padding: 80px 20px; color: var(--muted); grid-column: 1 / -1; }
+.state-msg svg { width: 48px; height: 48px; stroke: var(--border); margin-bottom: 16px; display: block; margin-left: auto; margin-right: auto; }
+.state-msg p { font-size: 14px; }
+.loading-dots { display: inline-flex; gap: 6px; }
+.loading-dots span { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; animation: bounce 1.2s infinite; }
+.loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+.loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes bounce { 0%,80%,100%{transform:scale(0.6);opacity:0.4}40%{transform:scale(1);opacity:1} }
+
+/* ARTICLE MODAL */
+.modal-bg { position: fixed; inset: 0; background: rgba(15,23,42,0.7); z-index: 200; display: flex; align-items: flex-start; justify-content: center; padding: 32px 20px 80px; overflow-y: auto; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+.modal-bg.show { opacity: 1; pointer-events: all; }
+.modal-box { background: var(--white); max-width: 720px; width: 100%; position: relative; animation: slideUp 0.3s ease; }
+@keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.modal-hero { background: var(--navy); padding: 40px 40px 32px; }
+.modal-cat { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 600; background: rgba(168,137,90,0.15); padding: 3px 10px; display: inline-block; margin-bottom: 16px; }
+.modal-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(24px, 3vw, 36px); font-weight: 300; color: var(--white); line-height: 1.2; }
+.modal-meta { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 12px; }
+.modal-content { padding: 36px 40px; font-size: 14px; line-height: 1.9; color: var(--text); }
+.modal-content h2 { font-family: 'Cormorant Garamond', serif; font-size: 26px; color: var(--navy); font-weight: 600; margin: 28px 0 12px; }
+.modal-content h3 { font-family: 'Cormorant Garamond', serif; font-size: 21px; color: var(--navy); font-weight: 600; margin: 22px 0 10px; }
+.modal-content p { margin-bottom: 14px; }
+.modal-content ul, .modal-content ol { padding-left: 20px; margin-bottom: 14px; }
+.modal-content li { margin-bottom: 6px; }
+.modal-content blockquote { border-left: 3px solid var(--gold); padding-left: 16px; color: var(--muted); font-style: italic; margin: 16px 0; }
+.modal-content a { color: var(--gold); }
+.modal-close { position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.1); border: none; color: var(--white); width: 34px; height: 34px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+.modal-close:hover { background: rgba(255,255,255,0.2); }
+.modal-close svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
+.modal-footer { padding: 20px 40px; border-top: 1px solid var(--border); background: var(--bg); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.modal-footer-info { font-size: 11px; color: var(--muted); }
+.contact-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: var(--white); padding: 10px 20px; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; font-family: 'Raleway', sans-serif; text-decoration: none; transition: background 0.2s; }
+.contact-cta:hover { background: var(--navy-mid); }
+
+/* CTA */
+.cta-section { background: var(--navy); padding: 48px 5vw; text-align: center; margin-top: 0; }
+.cta-section h2 { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; color: var(--white); margin-bottom: 10px; }
+.cta-section h2 em { font-style: italic; color: var(--gold); }
+.cta-section p { font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 24px; }
+.cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn-gold { background: var(--gold); color: var(--white); padding: 13px 28px; font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 600; font-family: 'Raleway', sans-serif; text-decoration: none; display: inline-block; transition: background 0.2s; border: none; cursor: pointer; }
+.btn-gold:hover { background: var(--gold-light); }
+.btn-white-outline { background: transparent; color: var(--white); padding: 13px 28px; font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500; border: 1.5px solid rgba(255,255,255,0.3); font-family: 'Raleway', sans-serif; text-decoration: none; display: inline-block; transition: all 0.2s; }
+.btn-white-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+/* FOOTER */
+footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); padding: 32px 5vw; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--white); }
+.footer-logo span { color: var(--gold); }
+.footer-copy { font-size: 11px; color: rgba(255,255,255,0.4); }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 10px; color: rgba(255,255,255,0.4); text-decoration: none; letter-spacing: 1px; transition: color 0.2s; }
+.footer-links a:hover { color: var(--gold); }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .featured-card { grid-template-columns: 1fr; }
+  .featured-left { padding: 32px 24px; }
+  .featured-right { padding: 28px 24px; }
+  .featured-num { font-size: 56px; }
+  .articles-grid { grid-template-columns: 1fr; }
+  .modal-hero, .modal-content, .modal-footer { padding-left: 24px; padding-right: 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="logo">
+    <div class="logo-icon">ΕΕ</div>
+    <div class="logo-text">Ελπίδα Ευαγγέλου<span>Δικηγορικό Γραφείο</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="/">Αρχική</a>
+    <a href="/#about">Σχετικά</a>
+    <a href="/#practice">Τομείς Δράσης</a>
+    <a href="/arthra" class="active">Άρθρα</a>
+    <a href="/#contact">Επικοινωνία</a>
+  </div>
+  <a href="/#contact" class="nav-cta">Επικοινωνία &rarr;</a>
+</nav>
+
+<!-- BREADCRUMB -->
+<nav class="breadcrumb" aria-label="breadcrumb">
+  <a href="/">Αρχική</a><span>›</span>Νομικά Άρθρα
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-eyebrow">Νομική Γνώση</div>
+  <h1>Νομικά Άρθρα &<br><em>Συμβουλές</em></h1>
+  <p>Χρήσιμα νομικά άρθρα, ειδήσεις και αναλύσεις από τη δικηγόρο Ελπίδα Ευαγγέλου. Ενημερωθείτε για τα δικαιώματά σας.</p>
+</section>
+
+<!-- FILTER -->
+<div class="filter-bar" id="filterBar">
+  <button class="filter-btn active" onclick="filterArticles('all', this)">Όλα</button>
+  <button class="filter-btn" onclick="filterArticles('Αστικό Δίκαιο', this)">Αστικό Δίκαιο</button>
+  <button class="filter-btn" onclick="filterArticles('Ποινικό Δίκαιο', this)">Ποινικό Δίκαιο</button>
+  <button class="filter-btn" onclick="filterArticles('Εμπορικό Δίκαιο', this)">Εμπορικό Δίκαιο</button>
+  <button class="filter-btn" onclick="filterArticles('Διοικητικό Δίκαιο', this)">Διοικητικό Δίκαιο</button>
+  <button class="filter-btn" onclick="filterArticles('Γενικά', this)">Γενικά</button>
+</div>
+
+<!-- ARTICLES -->
+<div class="content-wrap">
+  <div class="articles-grid" id="articlesGrid">
+    <div class="state-msg">
+      <div class="loading-dots"><span></span><span></span><span></span></div>
+      <p style="margin-top:16px;">Φόρτωση άρθρων...</p>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Χρειάζεστε <em>Νομική Συμβουλή;</em></h2>
+  <p>Επικοινωνήστε σήμερα για εμπιστευτική συνάντηση.</p>
+  <div class="cta-buttons">
+    <a href="tel:+306932692757" class="btn-gold">&#9990; 6932 692 757</a>
+    <a href="/#contact" class="btn-white-outline">Φόρμα Επικοινωνίας &rarr;</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Ελπίδα <span>Ευαγγέλου</span></div>
+  <div class="footer-copy">&copy; 2026 Δικηγορικό Γραφείο Θεσσαλονίκης</div>
+  <div class="footer-links">
+    <a href="/">Αρχική</a>
+    <a href="/#contact">Επικοινωνία</a>
+  </div>
+</footer>
+
+<!-- ARTICLE MODAL -->
+<div class="modal-bg" id="articleModal" onclick="handleModalClick(event)">
+  <div class="modal-box" id="modalBox">
+    <div class="modal-hero">
+      <button class="modal-close" onclick="closeArticle()">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="modal-cat" id="modalCat"></div>
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-meta" id="modalMeta"></div>
+    </div>
+    <div class="modal-content" id="modalContent"></div>
+    <div class="modal-footer">
+      <div class="modal-footer-info">Δικηγορικό Γραφείο Ελπίδας Ευαγγέλου · Θεσσαλονίκη</div>
+      <a href="/#contact" class="contact-cta">Επικοινωνία &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<script>
+let allArticles = [];
+let currentFilter = 'all';
+
+async function loadArticles() {
+  try {
+    const r = await fetch('/arthra/articles.json?v=' + Date.now());
+    if (r.ok) {
+      allArticles = await r.json();
+    }
+  } catch(e) {
+    allArticles = [];
+  }
+  renderArticles(allArticles);
+}
+
+function filterArticles(cat, btn) {
+  currentFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const filtered = cat === 'all' ? allArticles : allArticles.filter(a => a.category === cat);
+  renderArticles(filtered);
+}
+
+function renderArticles(list) {
+  const grid = document.getElementById('articlesGrid');
+  if (!list.length) {
+    grid.innerHTML = `<div class="state-msg">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      <p>Δεν υπάρχουν άρθρα ${currentFilter !== 'all' ? 'σε αυτή την κατηγορία' : 'ακόμα'}.<br>Ελέγξτε ξανά σύντομα!</p>
+    </div>`;
+    return;
+  }
+
+  const sorted = [...list].sort((a,b) => new Date(b.date) - new Date(a.date));
+  let html = '';
+
+  sorted.forEach((a, i) => {
+    if (i === 0) {
+      // Featured card
+      html += `
+      <div class="featured-card" onclick="openArticle('${a.id}')" style="cursor:pointer;">
+        <div class="featured-left">
+          <div class="featured-num">01</div>
+          <div class="featured-label">Πιο Πρόσφατο</div>
+          <div class="featured-title">${a.title}</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.35);margin-top:12px;">${formatDate(a.date)}</div>
+        </div>
+        <div class="featured-right">
+          <span class="featured-cat">${a.category}</span>
+          <p class="featured-excerpt">${a.excerpt || stripHtml(a.content).slice(0,200) + '...'}</p>
+          <button class="btn-read" onclick="openArticle('${a.id}');event.stopPropagation()">
+            Διαβάστε περισσότερα
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </div>`;
+    } else {
+      html += `
+      <div class="article-card">
+        <div class="card-cat-bar"></div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-cat">${a.category}</span>
+            <span class="card-date">${formatDate(a.date)}</span>
+          </div>
+          <div class="card-title">${a.title}</div>
+          <p class="card-excerpt">${a.excerpt || stripHtml(a.content).slice(0,150) + '...'}</p>
+        </div>
+        <div class="card-footer">
+          <a class="read-more" onclick="openArticle('${a.id}')" style="cursor:pointer;">
+            Διαβάστε
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <span style="font-size:10px;color:var(--muted);">${readTime(a.content)} λεπτά</span>
+        </div>
+      </div>`;
+    }
+  });
+
+  grid.innerHTML = html;
+}
+
+function openArticle(id) {
+  const a = allArticles.find(x => x.id === id);
+  if (!a) return;
+  document.getElementById('modalCat').textContent   = a.category;
+  document.getElementById('modalTitle').textContent = a.title;
+  document.getElementById('modalMeta').textContent  = formatDate(a.date) + ' · ' + readTime(a.content) + ' λεπτά ανάγνωση';
+  document.getElementById('modalContent').innerHTML = a.content;
+  document.getElementById('articleModal').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeArticle() {
+  document.getElementById('articleModal').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+function handleModalClick(e) {
+  if (e.target === document.getElementById('articleModal')) closeArticle();
+}
+
+// Utils
+function formatDate(iso) {
+  if (!iso) return '';
+  return new Date(iso).toLocaleDateString('el-GR', { day:'2-digit', month:'long', year:'numeric' });
+}
+function stripHtml(html) { return (html || '').replace(/<[^>]*>/g,'').replace(/\s+/g,' ').trim(); }
+function readTime(content) { const words = stripHtml(content).split(/\s+/).length; return Math.max(1, Math.round(words / 200)); }
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeArticle(); });
+
+loadArticles();
+</script>
+</body>
+</html>
