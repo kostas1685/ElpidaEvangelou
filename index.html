@@ -943,12 +943,10 @@ function resetContactForm() {
 
 async function submitContactForm(e) {
   e.preventDefault();
-  const btn     = document.getElementById('cf-btn');
-  const errEl   = document.getElementById('cf-error');
-  const succEl  = document.getElementById('cf-success');
+  const btn   = document.getElementById('cf-btn');
+  const errEl = document.getElementById('cf-error');
 
-  errEl.style.display  = 'none';
-  succEl.style.display = 'none';
+  errEl.style.display = 'none';
 
   const name    = document.getElementById('cf-name').value.trim();
   const surname = document.getElementById('cf-surname').value.trim();
