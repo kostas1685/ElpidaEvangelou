@@ -217,10 +217,12 @@ body { font-family: 'Raleway', sans-serif; background: var(--bg); color: var(--n
   <div class="login-box">
     <div class="login-logo">Ελπίδα <span>Ευαγγέλου</span></div>
     <div class="login-sub">Studio · Διαχείριση</div>
+    <label for="loginUser">Username</label>
+    <input type="text" id="loginUser" placeholder="username" onkeydown="if(event.key==='Enter')doLogin()" autocomplete="username">
     <label for="loginPass">Κωδικός</label>
-    <input type="password" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
+    <input type="password" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()" autocomplete="current-password">
     <button class="login-btn" onclick="doLogin()">Είσοδος</button>
-    <div class="login-error" id="loginError">Λάθος κωδικός</div>
+    <div class="login-error" id="loginError">Λάθος username ή κωδικός</div>
   </div>
 </div>
 
@@ -415,17 +417,21 @@ body { font-family: 'Raleway', sans-serif; background: var(--bg); color: var(--n
       </div>
 
       <div class="settings-card">
-        <h3>Αλλαγή Κωδικού</h3>
-        <p>Αλλάξτε τον κωδικό πρόσβασης του Studio.</p>
+        <h3>Αλλαγή Στοιχείων Εισόδου</h3>
+        <p>Αλλάξτε το username και τον κωδικό πρόσβασης του Studio.</p>
+        <div class="field-group">
+          <label class="field-label">Νέο Username</label>
+          <input type="text" class="field-input" id="newUser" placeholder="Νέο username" autocomplete="new-password">
+        </div>
         <div class="field-group">
           <label class="field-label">Νέος Κωδικός</label>
-          <input type="password" class="field-input" id="newPass" placeholder="Νέος κωδικός">
+          <input type="password" class="field-input" id="newPass" placeholder="Νέος κωδικός" autocomplete="new-password">
         </div>
         <div class="field-group">
           <label class="field-label">Επιβεβαίωση Κωδικού</label>
-          <input type="password" class="field-input" id="newPass2" placeholder="Επαναλάβετε τον κωδικό">
+          <input type="password" class="field-input" id="newPass2" placeholder="Επαναλάβετε τον κωδικό" autocomplete="new-password">
         </div>
-        <button class="btn btn-outline" onclick="changePassword()">Αλλαγή Κωδικού</button>
+        <button class="btn btn-outline" onclick="changeCredentials()">Αποθήκευση Στοιχείων</button>
       </div>
     </div>
   </div>
@@ -448,7 +454,8 @@ body { font-family: 'Raleway', sans-serif; background: var(--bg); color: var(--n
 
 <script>
 // ── CONFIG ──────────────────────────────────────────────
-const DEFAULT_PASSWORD = 'evangelou2026';
+const DEFAULT_USERNAME = 'kostas1685';
+const DEFAULT_PASSWORD = 'REDACTED-CREDENTIAL';
 const ARTICLES_PATH    = 'arthra/articles.json';
 
 // ── STATE ────────────────────────────────────────────────
@@ -457,11 +464,13 @@ let editingId = null;
 let deleteTargetId = null;
 
 // ── AUTH ─────────────────────────────────────────────────
+function getUsername() { return localStorage.getItem('studio_username') || DEFAULT_USERNAME; }
 function getPassword() { return localStorage.getItem('studio_password') || DEFAULT_PASSWORD; }
 
 function doLogin() {
+  const user = document.getElementById('loginUser').value.trim();
   const pass = document.getElementById('loginPass').value;
-  if (pass === getPassword()) {
+  if (user === getUsername() && pass === getPassword()) {
     localStorage.setItem('studio_auth', '1');
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('app').style.display = 'flex';
@@ -478,16 +487,20 @@ function doLogout() {
   location.reload();
 }
 
-function changePassword() {
+function changeCredentials() {
+  const newUser = document.getElementById('newUser').value.trim();
   const p1 = document.getElementById('newPass').value;
   const p2 = document.getElementById('newPass2').value;
+  if (!newUser) return showToast('Εισάγετε username', 'error');
   if (!p1) return showToast('Εισάγετε κωδικό', 'error');
   if (p1 !== p2) return showToast('Οι κωδικοί δεν ταιριάζουν', 'error');
   if (p1.length < 6) return showToast('Ο κωδικός πρέπει να έχει τουλάχιστον 6 χαρακτήρες', 'error');
+  localStorage.setItem('studio_username', newUser);
   localStorage.setItem('studio_password', p1);
+  document.getElementById('newUser').value = '';
   document.getElementById('newPass').value = '';
   document.getElementById('newPass2').value = '';
-  showToast('Ο κωδικός άλλαξε επιτυχώς', 'success');
+  showToast('Username & κωδικός άλλαξαν επιτυχώς', 'success');
 }
 
 // ── INIT ─────────────────────────────────────────────────
@@ -496,6 +509,8 @@ function initApp() {
   document.getElementById('ghToken').value = localStorage.getItem('gh_token') || '';
   document.getElementById('ghUser').value  = localStorage.getItem('gh_user')  || 'kostas1685';
   document.getElementById('ghRepo').value  = localStorage.getItem('gh_repo')  || 'ElpidaEvangelou';
+  // Show current username as placeholder
+  document.getElementById('newUser').placeholder = 'Τρέχον: ' + getUsername();
   // Load articles from GitHub
   loadArticles();
   // SEO meta counter
