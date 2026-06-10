@@ -206,6 +206,84 @@
   }
   .submit-btn:hover { background: var(--navy-mid); }
 
+  /* SUCCESS OVERLAY */
+  .success-overlay {
+    display: none;
+    position: absolute; inset: 0;
+    background: var(--white);
+    flex-direction: column; align-items: center; justify-content: center;
+    z-index: 10; padding: 40px 20px; text-align: center;
+  }
+  .success-overlay.show { display: flex; }
+
+  /* Bubble */
+  .success-bubble {
+    width: 96px; height: 96px; border-radius: 50%;
+    background: var(--muted-gold);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+    transform: scale(0);
+    animation: bubblePop 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  }
+  @keyframes bubblePop {
+    0%   { transform: scale(0); opacity: 0; }
+    60%  { transform: scale(1.12); opacity: 1; }
+    80%  { transform: scale(0.94); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  /* Checkmark SVG */
+  .check-svg { width: 44px; height: 44px; }
+  .check-path {
+    stroke: #fff; stroke-width: 3.5; fill: none;
+    stroke-linecap: round; stroke-linejoin: round;
+    stroke-dasharray: 60; stroke-dashoffset: 60;
+    animation: drawCheck 0.4s ease forwards 0.45s;
+  }
+  @keyframes drawCheck {
+    to { stroke-dashoffset: 0; }
+  }
+
+  /* Ripple rings */
+  .success-bubble::before,
+  .success-bubble::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid var(--muted-gold);
+    opacity: 0;
+    animation: ripple 1.4s ease-out infinite;
+  }
+  .success-bubble { position: relative; }
+  .success-bubble::before { width: 120px; height: 120px; animation-delay: 0.6s; }
+  .success-bubble::after  { width: 150px; height: 150px; animation-delay: 0.9s; }
+  @keyframes ripple {
+    0%   { transform: scale(0.7); opacity: 0.6; }
+    100% { transform: scale(1.3); opacity: 0; }
+  }
+
+  .success-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 300; color: var(--navy);
+    margin-bottom: 10px;
+    opacity: 0; transform: translateY(12px);
+    animation: fadeUp 0.4s ease forwards 0.7s;
+  }
+  .success-title em { font-style: italic; color: var(--muted-gold); }
+  .success-msg {
+    font-size: 13px; color: var(--text-body); line-height: 1.8; max-width: 300px;
+    opacity: 0; transform: translateY(10px);
+    animation: fadeUp 0.4s ease forwards 0.85s;
+  }
+  .success-back {
+    margin-top: 24px; background: transparent; border: 1.5px solid var(--muted-gold);
+    color: var(--muted-gold); padding: 10px 24px; font-size: 10px; letter-spacing: 2px;
+    text-transform: uppercase; font-weight: 600; font-family: 'Raleway', sans-serif;
+    cursor: pointer; transition: all 0.2s;
+    opacity: 0; animation: fadeUp 0.4s ease forwards 1s;
+  }
+  .success-back:hover { background: var(--muted-gold); color: var(--white); }
+
   /* CTA BANNER */
   .cta-banner {
     background: var(--muted-gold-pale); border-top: 1px solid var(--border-gold); border-bottom: 1px solid var(--border-gold);
@@ -550,7 +628,18 @@
         </div>
       </div>
     </div>
-    <div class="contact-right">
+    <div class="contact-right" style="position:relative;">
+      <!-- Success overlay -->
+      <div class="success-overlay" id="successOverlay">
+        <div class="success-bubble">
+          <svg class="check-svg" viewBox="0 0 44 44">
+            <path class="check-path" d="M10 22 L19 32 L34 14"/>
+          </svg>
+        </div>
+        <div class="success-title">Το μήνυμά σας <em>εστάλη!</em></div>
+        <p class="success-msg">Σας ευχαριστούμε για την επικοινωνία. Θα σας απαντήσουμε το συντομότερο δυνατό.</p>
+        <button class="success-back" onclick="resetContactForm()">← Νέο Μήνυμα</button>
+      </div>
       <form id="contactForm" onsubmit="submitContactForm(event)" novalidate>
         <div class="form-row">
           <div class="form-group"><label>Όνομα</label><input type="text" id="cf-name" placeholder="Το όνομά σας" required></div>
@@ -570,9 +659,6 @@
         </div>
         <div class="form-group"><label>Μήνυμα</label><textarea id="cf-message" placeholder="Περιγράψτε συνοπτικά την υπόθεσή σας..." required></textarea></div>
         <div id="cf-error" style="display:none;background:#FEF2F2;border:1px solid #FECACA;color:#991B1B;padding:10px 14px;font-size:12px;margin-bottom:12px;"></div>
-        <div id="cf-success" style="display:none;background:#F0FDF4;border:1px solid #BBF7D0;color:#166534;padding:14px;font-size:13px;text-align:center;margin-bottom:12px;">
-          ✓ Το μήνυμά σας στάλθηκε επιτυχώς! Θα επικοινωνήσουμε σύντομα.
-        </div>
         <button class="submit-btn" type="submit" id="cf-btn">Αποστολή Μηνύματος &rarr;</button>
       </form>
     </div>
@@ -851,6 +937,10 @@ function setLang(lang) {
 </script>
 
 <script>
+function resetContactForm() {
+  document.getElementById('successOverlay').classList.remove('show');
+}
+
 async function submitContactForm(e) {
   e.preventDefault();
   const btn     = document.getElementById('cf-btn');
@@ -884,7 +974,11 @@ async function submitContactForm(e) {
     });
     const data = await res.json();
     if (res.ok && data.success) {
-      succEl.style.display = 'block';
+      // Reset & re-trigger animation each time
+      const overlay = document.getElementById('successOverlay');
+      overlay.classList.remove('show');
+      void overlay.offsetWidth; // reflow to restart animations
+      overlay.classList.add('show');
       document.getElementById('contactForm').reset();
     } else {
       errEl.textContent = data.error || 'Αποτυχία αποστολής. Δοκιμάστε ξανά.';
