@@ -214,6 +214,19 @@
     .content-grid { grid-template-columns: 1fr; }
     .areas-grid { grid-template-columns: 1fr 1fr; }
   }
+
+  /* PAGE LOAD ANIMATION */
+  @keyframes fadeSlideLeft {
+    from { opacity: 0; transform: translateX(-56px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  .breadcrumb      { animation: fadeSlideLeft 0.45s ease both; }
+  .page-hero       { animation: fadeSlideLeft 0.55s ease 0.08s both; }
+  .content-section { animation: fadeSlideLeft 0.65s ease 0.2s  both; }
+  .faq-section     { animation: fadeSlideLeft 0.55s ease 0.1s  both; }
+  .related-section { animation: fadeSlideLeft 0.5s  ease 0.08s both; }
+  .cta-section     { animation: fadeSlideLeft 0.5s  ease 0.05s both; }
+  footer           { animation: fadeSlideLeft 0.45s ease 0.05s both; }
 </style>
 </head>
 <body>
