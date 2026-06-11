@@ -24,7 +24,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Μη έγκυρο email.' });
   }
 
-  const FROM = 'Δικηγορικό Γραφείο Ευαγγέλου <noreply@evangeloulaw.gr>';
+  const FROM = 'Δικηγορικό Γραφείο Ελπίδα Ευαγγέλου <noreply@evangeloulaw.gr>';
 
   try {
     // --- 1. Notification email to the lawyer ---
@@ -124,7 +124,7 @@ export default async function handler(req, res) {
           <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; color: #1E293B;">
             <div style="background: #1E293B; padding: 28px 32px; border-bottom: 3px solid #A8895A;">
               <h1 style="color: #fff; font-size: 22px; margin: 0; font-weight: 300;">
-                Δικηγορικό Γραφείο <span style="color: #A8895A; font-style: italic;">Ευαγγέλου</span>
+                Δικηγορικό Γραφείο <span style="color: #A8895A; font-style: italic;">Ελπίδα Ευαγγέλου</span>
               </h1>
               <p style="color: rgba(255,255,255,0.5); font-size: 12px; margin: 6px 0 0; font-family: Arial, sans-serif; letter-spacing: 1px;">
                 ΘΕΣΣΑΛΟΝΙΚΗ
