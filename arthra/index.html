@@ -292,10 +292,11 @@ function renderArticles(list) {
   let html = '';
 
   sorted.forEach((a, i) => {
+    const url = `/arthra/artro/?id=${a.id}`;
     if (i === 0) {
       // Featured card
       html += `
-      <div class="featured-card" onclick="openArticle('${a.id}')" style="cursor:pointer;">
+      <a class="featured-card" href="${url}" style="text-decoration:none;">
         <div class="featured-left">
           <div class="featured-num">01</div>
           <div class="featured-label">Πιο Πρόσφατο</div>
@@ -305,15 +306,15 @@ function renderArticles(list) {
         <div class="featured-right">
           <span class="featured-cat">${a.category}</span>
           <p class="featured-excerpt">${a.excerpt || stripHtml(a.content).slice(0,200) + '...'}</p>
-          <button class="btn-read" onclick="openArticle('${a.id}');event.stopPropagation()">
+          <span class="btn-read">
             Διαβάστε περισσότερα
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </button>
+          </span>
         </div>
-      </div>`;
+      </a>`;
     } else {
       html += `
-      <div class="article-card">
+      <a class="article-card" href="${url}" style="text-decoration:none;">
         <div class="card-cat-bar"></div>
         <div class="card-body">
           <div class="card-meta">
@@ -324,13 +325,13 @@ function renderArticles(list) {
           <p class="card-excerpt">${a.excerpt || stripHtml(a.content).slice(0,150) + '...'}</p>
         </div>
         <div class="card-footer">
-          <a class="read-more" onclick="openArticle('${a.id}')" style="cursor:pointer;">
+          <span class="read-more">
             Διαβάστε
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
+          </span>
           <span style="font-size:10px;color:var(--muted);">${readTime(a.content)} λεπτά</span>
         </div>
-      </div>`;
+      </a>`;
     }
   });
 
