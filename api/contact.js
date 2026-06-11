@@ -24,15 +24,18 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Μη έγκυρο email.' });
   }
 
+  const FROM = 'Δικηγορικό Γραφείο Ευαγγέλου <noreply@evangeloulaw.gr>';
+
   try {
-    const response = await fetch('https://api.resend.com/emails', {
+    // --- 1. Notification email to the lawyer ---
+    const notifyResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'Επικοινωνία <noreply@evangeloulaw.gr>',
+        from: FROM,
         to: ['kostas1685@gmail.com'],
         reply_to: email,
         subject: `Νέο μήνυμα από ${name} ${surname || ''} – ${area || 'Γενικό'}`,
@@ -100,11 +103,61 @@ export default async function handler(req, res) {
       }),
     });
 
-    if (!response.ok) {
-      const err = await response.json();
-      console.error('Resend error:', err);
+    if (!notifyResponse.ok) {
+      const err = await notifyResponse.json();
+      console.error('Resend error (notify):', err);
       return res.status(500).json({ error: 'Αποτυχία αποστολής. Παρακαλώ δοκιμάστε ξανά.' });
     }
+
+    // --- 2. Confirmation email to the client ---
+    await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: FROM,
+        to: [email],
+        subject: 'Λάβαμε το μήνυμά σας – Δικηγορικό Γραφείο Ευαγγέλου',
+        html: `
+          <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; color: #1E293B;">
+            <div style="background: #1E293B; padding: 28px 32px; border-bottom: 3px solid #A8895A;">
+              <h1 style="color: #fff; font-size: 22px; margin: 0; font-weight: 300;">
+                Δικηγορικό Γραφείο <span style="color: #A8895A; font-style: italic;">Ευαγγέλου</span>
+              </h1>
+              <p style="color: rgba(255,255,255,0.5); font-size: 12px; margin: 6px 0 0; font-family: Arial, sans-serif; letter-spacing: 1px;">
+                ΘΕΣΣΑΛΟΝΙΚΗ
+              </p>
+            </div>
+            <div style="background: #fff; padding: 36px 32px; border: 1px solid #e2e8f0; border-top: none;">
+              <p style="font-size: 16px; color: #1E293B; margin: 0 0 16px;">Αγαπητέ/ή <strong>${name} ${surname || ''}</strong>,</p>
+              <p style="font-size: 14px; line-height: 1.8; color: #4A5568; margin: 0 0 20px;">
+                Λάβαμε το μήνυμά σας και θα επικοινωνήσουμε μαζί σας το συντομότερο δυνατό.
+              </p>
+              <div style="background: #F8F9FA; border-left: 3px solid #A8895A; padding: 16px 20px; margin-bottom: 24px;">
+                <p style="font-size: 12px; color: #718096; margin: 0 0 6px; font-family: Arial, sans-serif; text-transform: uppercase; letter-spacing: 1px;">Το μήνυμά σας</p>
+                <p style="font-size: 14px; color: #4A5568; margin: 0; line-height: 1.7; white-space: pre-wrap;">${message.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
+              </div>
+              <p style="font-size: 14px; line-height: 1.8; color: #4A5568; margin: 0 0 8px;">
+                Για άμεση επικοινωνία:
+              </p>
+              <p style="font-size: 14px; color: #1E293B; margin: 0;">
+                📞 <a href="tel:+306932692757" style="color: #A8895A; text-decoration: none;">6932 692 757</a><br>
+                ✉️ <a href="mailto:elpidaev63@gmail.com" style="color: #A8895A; text-decoration: none;">elpidaev63@gmail.com</a>
+              </p>
+            </div>
+            <div style="background: #F8F9FA; padding: 16px 32px; border: 1px solid #e2e8f0; border-top: none; text-align: center;">
+              <p style="font-size: 11px; color: #718096; font-family: Arial, sans-serif; margin: 0;">
+                © ${new Date().getFullYear()} Δικηγορικό Γραφείο Ευαγγέλου &nbsp;·&nbsp;
+                <a href="https://www.evangeloulaw.gr" style="color: #A8895A; text-decoration: none;">evangeloulaw.gr</a>
+              </p>
+            </div>
+          </div>
+        `,
+      }),
+    });
+    // (confirmation failure is non-fatal — main notification already sent)
 
     return res.status(200).json({ success: true });
 
