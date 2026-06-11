@@ -568,7 +568,8 @@ async function loadArticles() {
     const r = await fetch(`https://api.github.com/repos/${user}/${repo}/contents/${ARTICLES_PATH}`, { headers });
     if (r.ok) {
       const data = await r.json();
-      articles = JSON.parse(atob(data.content.replace(/\n/g, '')));
+      const bytes = Uint8Array.from(atob(data.content.replace(/\n/g, '')), c => c.charCodeAt(0));
+      articles = JSON.parse(new TextDecoder('utf-8').decode(bytes));
     } else {
       articles = JSON.parse(localStorage.getItem('studio_articles') || '[]');
     }
