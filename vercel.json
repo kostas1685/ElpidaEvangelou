@@ -1,7 +1,13 @@
 {
-  "functions": {
-    "api/contact.js": {
-      "maxDuration": 10
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "evangeloulaw.gr" }],
+      "destination": "https://www.evangeloulaw.gr/$1",
+      "permanent": true
     }
+  ],
+  "functions": {
+    "api/contact.js": { "maxDuration": 10 }
   }
 }
