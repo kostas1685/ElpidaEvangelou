@@ -295,13 +295,13 @@ function renderArticles(list) {
 
   sorted.forEach((a, i) => {
     const url = `/arthra/artro/?id=${a.id}`;
-    if (i === 0) {
-      // Featured card
-      html += `
+    const num = String(i + 1).padStart(2, '0');
+    const label = i === 0 ? 'Πιο Πρόσφατο' : `${readTime(a.content)} λεπτά ανάγνωση`;
+    html += `
       <a class="featured-card" href="${url}" style="text-decoration:none;">
         <div class="featured-left">
-          <div class="featured-num">01</div>
-          <div class="featured-label">Πιο Πρόσφατο</div>
+          <div class="featured-num">${num}</div>
+          <div class="featured-label">${label}</div>
           <div class="featured-title">${a.title}</div>
           <div style="font-size:11px;color:rgba(255,255,255,0.35);margin-top:12px;">${formatDate(a.date)}</div>
         </div>
@@ -314,27 +314,6 @@ function renderArticles(list) {
           </span>
         </div>
       </a>`;
-    } else {
-      html += `
-      <a class="article-card" href="${url}" style="text-decoration:none;">
-        <div class="card-cat-bar"></div>
-        <div class="card-body">
-          <div class="card-meta">
-            <span class="card-cat">${a.category}</span>
-            <span class="card-date">${formatDate(a.date)}</span>
-          </div>
-          <div class="card-title">${a.title}</div>
-          <p class="card-excerpt">${a.excerpt || stripHtml(a.content).slice(0,150) + '...'}</p>
-        </div>
-        <div class="card-footer">
-          <span class="read-more">
-            Διαβάστε
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </span>
-          <span style="font-size:10px;color:var(--muted);">${readTime(a.content)} λεπτά</span>
-        </div>
-      </a>`;
-    }
   });
 
   grid.innerHTML = html;
