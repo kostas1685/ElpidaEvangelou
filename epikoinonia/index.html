@@ -1,0 +1,259 @@
+﻿<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="/consent.js" defer></script>
+<title>Επικοινωνία | Ελπίδα Ευαγγέλου – Δικηγορικό Γραφείο Θεσσαλονίκη</title>
+<meta name="description" content="Επικοινωνήστε με το δικηγορικό γραφείο Ελπίδας Ευαγγέλου στη Θεσσαλονίκη. Φόρμα επικοινωνίας, τηλέφωνο, email και διεύθυνση.">
+<link rel="canonical" href="https://www.evangeloulaw.gr/epikoinonia">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Αρχική","item":"https://www.evangeloulaw.gr/"},
+    {"@type":"ListItem","position":2,"name":"Επικοινωνία","item":"https://www.evangeloulaw.gr/epikoinonia"}
+  ]
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #F8F9FA; --bg-section: #EDEEF0; --navy: #1E293B; --navy-mid: #2E3F55;
+  --muted-gold: #A8895A; --muted-gold-light: #C4A97A; --muted-gold-pale: #F0E8D8;
+  --text-body: #4A5568; --text-muted: #718096; --border: rgba(30,41,59,0.1);
+  --border-gold: rgba(168,137,90,0.3); --white: #FFFFFF;
+}
+body { font-family: 'Raleway', sans-serif; background: var(--bg); color: var(--navy); overflow-x: hidden; }
+nav { position: sticky; top: 0; z-index: 1000; background: var(--white); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 5vw; height: 68px; box-shadow: 0 1px 8px rgba(30,41,59,0.06); }
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.logo-icon { width: 40px; height: 40px; border: 1.5px solid var(--muted-gold); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--muted-gold); font-weight: 600; }
+.logo-text { font-family: 'Cormorant Garamond', serif; }
+.logo-text .ln1 { display: block; font-size: 15px; font-weight: 600; color: var(--navy); letter-spacing: 0.04em; }
+.logo-text .ln2 { display: block; font-size: 10px; font-weight: 400; color: var(--text-muted); letter-spacing: 0.12em; text-transform: uppercase; }
+.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+.nav-links a { text-decoration: none; font-size: 13px; font-weight: 500; color: var(--text-body); letter-spacing: 0.04em; transition: color 0.2s; }
+.nav-links a:hover { color: var(--muted-gold); }
+.nav-links .nav-cta { background: var(--navy); color: var(--white) !important; padding: 9px 20px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; transition: background 0.2s !important; }
+.nav-links .nav-cta:hover { background: var(--muted-gold) !important; }
+.nav-links .active-link { color: var(--muted-gold) !important; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+.hamburger span { display: block; width: 22px; height: 1.5px; background: var(--navy); transition: all 0.3s; }
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+  .nav-links { display: none; position: absolute; top: 68px; left: 0; right: 0; background: var(--white); flex-direction: column; padding: 20px 5vw; gap: 16px; border-bottom: 1px solid var(--border); box-shadow: 0 4px 12px rgba(30,41,59,0.08); }
+  .nav-links.open { display: flex; }
+  .nav-links .nav-cta { width: fit-content; }
+}
+.breadcrumb { position: relative; z-index: 1; background: var(--bg-section); padding: 10px 5vw; border-bottom: 1px solid var(--border); display: flex; gap: 6px; align-items: center; flex-wrap: wrap; justify-content: flex-start; height: auto; }
+.breadcrumb a { font-size: 12px; color: var(--muted-gold); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb span { font-size: 12px; color: var(--text-muted); }
+.page-hero { background: var(--navy); padding: 60px 5vw; text-align: center; }
+.page-hero .section-label { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted-gold); border: 1px solid var(--border-gold); padding: 5px 14px; margin-bottom: 16px; }
+.page-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px,5vw,52px); font-weight: 300; color: var(--white); line-height: 1.15; }
+.page-hero h1 em { font-style: italic; color: var(--muted-gold-light); }
+.page-hero p { margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.7); max-width: 520px; margin-left: auto; margin-right: auto; }
+.contact-section { padding: 80px 5vw; }
+.contact-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: start; }
+@media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
+.contact-left .section-label { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted-gold); border: 1px solid var(--border-gold); padding: 5px 14px; margin-bottom: 20px; }
+.contact-left h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px,4vw,42px); font-weight: 300; line-height: 1.2; margin-bottom: 16px; }
+.contact-left h2 em { font-style: italic; color: var(--muted-gold); }
+.contact-left > p { font-size: 14px; color: var(--text-body); line-height: 1.8; margin-bottom: 36px; }
+.contact-items { display: flex; flex-direction: column; gap: 16px; }
+.c-item { display: flex; align-items: flex-start; gap: 14px; text-decoration: none; color: var(--navy); padding: 16px 20px; border: 1px solid var(--border); background: var(--white); transition: border-color 0.25s, box-shadow 0.25s; }
+.c-item:hover { border-color: var(--muted-gold); box-shadow: 0 4px 16px rgba(168,137,90,0.1); }
+.c-icon { width: 36px; height: 36px; background: var(--muted-gold-pale); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.c-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 3px; }
+.c-value { font-size: 14px; font-weight: 500; color: var(--navy); }
+.contact-right { position: relative; background: var(--white); border: 1px solid var(--border); padding: 40px; }
+.contact-right form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 600px) { .contact-right form .form-row { grid-template-columns: 1fr; } }
+.form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.form-group label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); font-weight: 500; }
+.form-group input, .form-group select, .form-group textarea { border: 1px solid var(--border); padding: 10px 14px; font-size: 13px; font-family: 'Raleway', sans-serif; color: var(--navy); background: var(--bg); outline: none; transition: border-color 0.2s; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--muted-gold); }
+.form-group textarea { height: 120px; resize: vertical; }
+.submit-btn { width: 100%; background: var(--navy); color: var(--white); border: none; padding: 14px 28px; font-size: 13px; font-family: 'Raleway', sans-serif; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
+.submit-btn:hover { background: var(--muted-gold); }
+.submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.success-overlay { position: absolute; inset: 0; background: var(--white); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; opacity: 0; pointer-events: none; transition: opacity 0.4s; z-index: 10; }
+.success-overlay.show { opacity: 1; pointer-events: all; }
+.success-bubble { width: 72px; height: 72px; border-radius: 50%; background: var(--muted-gold-pale); border: 2px solid var(--muted-gold); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; animation: none; }
+.success-overlay.show .success-bubble { animation: bubblePop 0.5s cubic-bezier(0.175,0.885,0.32,1.275) forwards; }
+@keyframes bubblePop { 0%{transform:scale(0)} 100%{transform:scale(1)} }
+.check-svg { width: 36px; height: 36px; }
+.check-path { fill: none; stroke: var(--muted-gold); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 36; stroke-dashoffset: 36; }
+.success-overlay.show .check-path { animation: drawCheck 0.4s 0.3s ease forwards; }
+@keyframes drawCheck { to { stroke-dashoffset: 0; } }
+.success-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; text-align: center; margin-bottom: 12px; }
+.success-title em { font-style: italic; color: var(--muted-gold); }
+.success-msg { font-size: 13px; color: var(--text-body); text-align: center; line-height: 1.7; max-width: 280px; margin-bottom: 28px; }
+.success-back { background: none; border: 1px solid var(--border); padding: 10px 22px; font-size: 12px; font-family: 'Raleway', sans-serif; color: var(--text-muted); cursor: pointer; transition: border-color 0.2s, color 0.2s; letter-spacing: 0.06em; }
+.success-back:hover { border-color: var(--muted-gold); color: var(--muted-gold); }
+footer { background: var(--navy); color: rgba(255,255,255,0.6); padding: 40px 5vw; text-align: center; }
+.footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; color: var(--white); margin-bottom: 8px; }
+.footer-logo span { color: var(--muted-gold); }
+.footer-copy { font-size: 12px; margin-bottom: 12px; }
+.footer-links { display: flex; gap: 20px; justify-content: center; }
+.footer-links a { font-size: 12px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--muted-gold); }
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">
+    <div class="logo-icon">ΕΕ</div>
+    <div class="logo-text">
+      <span class="ln1">Ελπίδα Ευαγγέλου</span>
+      <span class="ln2">Δικηγορικό Γραφείο</span>
+    </div>
+  </a>
+  <button class="hamburger" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Μενού">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="/agorapwlisies-akineton-thessaloniki">Αγοραπωλησίες Θεσ/νίκης</a></li>
+    <li><a href="/agorapwlisies-akineton-xalkidiki">Αγοραπωλησίες Χαλκιδικής</a></li>
+    <li><a href="/arthra">Άρθρα</a></li>
+    <li><a href="/epikoinonia" class="nav-cta active-link">Επικοινωνία</a></li>
+  </ul>
+</nav>
+
+<nav class="breadcrumb" aria-label="breadcrumb">
+  <a href="/">Αρχική</a>
+  <span>›</span>
+  <span>Επικοινωνία</span>
+</nav>
+
+<section class="page-hero">
+  <div class="section-label">Επικοινωνία</div>
+  <h1>Μιλήστε <em>μαζί μας</em></h1>
+  <p>Κάθε υπόθεση είναι μοναδική. Επικοινωνήστε για μια εμπιστευτική συνάντηση.</p>
+</section>
+
+<section class="contact-section">
+  <div class="contact-grid">
+    <div class="contact-left">
+      <div class="section-label">Στοιχεία Επικοινωνίας</div>
+      <h2>Είμαστε <em>εδώ</em><br>για εσάς</h2>
+      <p>Επικοινωνήστε μαζί μας τηλεφωνικά, μέσω email ή επισκεφθείτε το γραφείο μας στη Θεσσαλονίκη.</p>
+      <div class="contact-items">
+        <a class="c-item" href="https://www.google.com/maps/place/%CE%94%CE%B9%CE%BA%CE%B7%CE%B3%CE%BF%CF%81%CE%B9%CE%BA%CF%8C+%CE%93%CF%81%CE%B1%CF%86%CE%B5%CE%AF%CE%BF+%CE%95%CE%BB%CF%80%CE%AF%CE%B4%CE%B1+%CE%95%CF%85%CE%B1%CE%B3%CE%B3%CE%AD%CE%BB%CE%BF%CF%85+%CE%94./@40.6401015,22.9301926,958m/data=!3m2!1e3!4b1!4m6!3m5!1s0x14a83971e0029765:0xbc2f5aebbb17e87b!8m2!3d40.6401015!4d22.9327729!16s%2Fg%2F11lkd0z451?entry=ttu" target="_blank" rel="noopener">
+          <div class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#A8895A" stroke-width="1.5" width="15" height="15"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="c-label">Διεύθυνση</div><div class="c-value">26ης Οκτωβρίου 14, Θεσσαλονίκη 546 27</div></div>
+        </a>
+        <a class="c-item" href="tel:+306932692757">
+          <div class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#A8895A" stroke-width="1.5" width="15" height="15"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.56 1.15h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 5.5 5.5l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div><div class="c-label">Τηλέφωνο</div><div class="c-value">6932 692 757</div></div>
+        </a>
+        <a class="c-item" href="mailto:elpidaev63@gmail.com">
+          <div class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#A8895A" stroke-width="1.5" width="15" height="15"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div><div class="c-label">Email</div><div class="c-value">elpidaev63@gmail.com</div></div>
+        </a>
+        <div class="c-item">
+          <div class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#A8895A" stroke-width="1.5" width="15" height="15"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div><div class="c-label">Ώρες Λειτουργίας</div><div class="c-value">Δε–Πα: 09:00 – 17:00</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-right">
+      <div class="success-overlay" id="successOverlay">
+        <div class="success-bubble">
+          <svg class="check-svg" viewBox="0 0 44 44">
+            <path class="check-path" d="M10 22 L19 32 L34 14"/>
+          </svg>
+        </div>
+        <div class="success-title">Το μήνυμά σας <em>εστάλη!</em></div>
+        <p class="success-msg">Σας ευχαριστούμε για την επικοινωνία. Θα σας απαντήσουμε το συντομότερο δυνατό.</p>
+        <button class="success-back" onclick="resetContactForm()">← Νέο Μήνυμα</button>
+      </div>
+      <form id="contactForm" onsubmit="submitContactForm(event)" novalidate>
+        <div class="form-row">
+          <div class="form-group"><label>Όνομα</label><input type="text" id="cf-name" placeholder="Το όνομά σας" required></div>
+          <div class="form-group"><label>Επώνυμο</label><input type="text" id="cf-surname" placeholder="Το επώνυμό σας"></div>
+        </div>
+        <div class="form-group"><label>Email</label><input type="email" id="cf-email" placeholder="email@example.com" required></div>
+        <div class="form-group"><label>Τηλέφωνο</label><input type="tel" id="cf-phone" placeholder="+30 6932 692 757"></div>
+        <div class="form-group">
+          <label>Τομέας Υπόθεσης</label>
+          <select id="cf-area">
+            <option value="">Επιλέξτε τομέα...</option>
+            <option>Αστικό Δίκαιο</option>
+            <option>Ποινικό Δίκαιο</option>
+            <option>Εμπορικό Δίκαιο</option>
+            <option>Διοικητικό Δίκαιο</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Μήνυμα</label><textarea id="cf-message" placeholder="Περιγράψτε συνοπτικά την υπόθεσή σας..." required></textarea></div>
+        <div id="cf-error" style="display:none;background:#FEF2F2;border:1px solid #FECACA;color:#991B1B;padding:10px 14px;font-size:12px;margin-bottom:12px;"></div>
+        <button class="submit-btn" type="submit" id="cf-btn">Αποστολή Μηνύματος &rarr;</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Ελπίδα <span>Ευαγγέλου</span></div>
+  <div class="footer-copy">&copy; 2026 Ελπίδα Ευαγγέλου &ndash; All Rights Reserved</div>
+  <div class="footer-links">
+    <a href="/politiki-aporritou">Πολιτική Απορρήτου</a>
+  </div>
+</footer>
+
+<script>
+function resetContactForm() {
+  document.getElementById('successOverlay').classList.remove('show');
+}
+
+async function submitContactForm(e) {
+  e.preventDefault();
+  const btn   = document.getElementById('cf-btn');
+  const errEl = document.getElementById('cf-error');
+  errEl.style.display = 'none';
+  const name    = document.getElementById('cf-name').value.trim();
+  const surname = document.getElementById('cf-surname').value.trim();
+  const email   = document.getElementById('cf-email').value.trim();
+  const phone   = document.getElementById('cf-phone').value.trim();
+  const area    = document.getElementById('cf-area').value;
+  const message = document.getElementById('cf-message').value.trim();
+  if (!name || !email || !message) {
+    errEl.textContent = 'Παρακαλώ συμπληρώστε τα υποχρεωτικά πεδία (Όνομα, Email, Μήνυμα).';
+    errEl.style.display = 'block';
+    return;
+  }
+  btn.disabled = true;
+  btn.textContent = 'Αποστολή...';
+  try {
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, surname, email, phone, area, message })
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      const overlay = document.getElementById('successOverlay');
+      overlay.classList.remove('show');
+      void overlay.offsetWidth;
+      overlay.classList.add('show');
+      document.getElementById('contactForm').reset();
+    } else {
+      errEl.textContent = data.error || 'Κάτι πήγε στραβά. Δοκιμάστε ξανά.';
+      errEl.style.display = 'block';
+    }
+  } catch (err) {
+    errEl.textContent = 'Σφάλμα δικτύου. Ελέγξτε τη σύνδεσή σας.';
+    errEl.style.display = 'block';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Αποστολή Μηνύματος →';
+  }
+}
+</script>
+</body>
+</html>

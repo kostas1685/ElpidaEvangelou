@@ -43,6 +43,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.evangeloulaw.gr/epikoinonia</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.evangeloulaw.gr/politiki-aporritou</loc>
     <lastmod>2026-06-17</lastmod>
     <changefreq>yearly</changefreq>
