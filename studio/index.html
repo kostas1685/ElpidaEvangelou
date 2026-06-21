@@ -212,19 +212,7 @@ body { font-family: 'Raleway', sans-serif; background: var(--bg); color: var(--n
 </head>
 <body>
 
-<!-- LOGIN -->
-<div id="loginScreen">
-  <div class="login-box">
-    <div class="login-logo">Ελπίδα <span>Ευαγγέλου</span></div>
-    <div class="login-sub">Studio · Διαχείριση</div>
-    <label for="loginUser">Username</label>
-    <input type="text" id="loginUser" placeholder="username" onkeydown="if(event.key==='Enter')doLogin()" autocomplete="username">
-    <label for="loginPass">Κωδικός</label>
-    <input type="password" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()" autocomplete="current-password">
-    <button class="login-btn" onclick="doLogin()">Είσοδος</button>
-    <div class="login-error" id="loginError">Λάθος username ή κωδικός</div>
-  </div>
-</div>
+<!-- Access to /studio is gated server-side by Vercel Edge Middleware (see /middleware.js) -->
 
 <!-- APP -->
 <div id="app">
@@ -417,21 +405,8 @@ body { font-family: 'Raleway', sans-serif; background: var(--bg); color: var(--n
       </div>
 
       <div class="settings-card">
-        <h3>Αλλαγή Στοιχείων Εισόδου</h3>
-        <p>Αλλάξτε το username και τον κωδικό πρόσβασης του Studio.</p>
-        <div class="field-group">
-          <label class="field-label">Νέο Username</label>
-          <input type="text" class="field-input" id="newUser" placeholder="Νέο username" autocomplete="new-password">
-        </div>
-        <div class="field-group">
-          <label class="field-label">Νέος Κωδικός</label>
-          <input type="password" class="field-input" id="newPass" placeholder="Νέος κωδικός" autocomplete="new-password">
-        </div>
-        <div class="field-group">
-          <label class="field-label">Επιβεβαίωση Κωδικού</label>
-          <input type="password" class="field-input" id="newPass2" placeholder="Επαναλάβετε τον κωδικό" autocomplete="new-password">
-        </div>
-        <button class="btn btn-outline" onclick="changeCredentials()">Αποθήκευση Στοιχείων</button>
+        <h3>Στοιχεία Εισόδου</h3>
+        <p>Η πρόσβαση στο Studio προστατεύεται από τον server (Vercel). Για αλλαγή username/κωδικού, ενημερώστε τις μεταβλητές <strong>STUDIO_USER</strong> / <strong>STUDIO_PASS</strong> στο Vercel → Settings → Environment Variables.</p>
       </div>
     </div>
   </div>
@@ -454,8 +429,9 @@ body { font-family: 'Raleway', sans-serif; background: var(--bg); color: var(--n
 
 <script>
 // ── CONFIG ──────────────────────────────────────────────
-const DEFAULT_USERNAME = 'kostas1685';
-const DEFAULT_PASSWORD = 'REDACTED-CREDENTIAL';
+// Access to /studio is protected server-side by Vercel Edge Middleware
+// (see /middleware.js) via HTTP Basic Auth against the STUDIO_USER / STUDIO_PASS
+// environment variables. No credentials are stored in this file.
 const ARTICLES_PATH    = 'arthra/articles.json';
 
 // ── STATE ────────────────────────────────────────────────
@@ -464,43 +440,10 @@ let editingId = null;
 let deleteTargetId = null;
 
 // ── AUTH ─────────────────────────────────────────────────
-function getUsername() { return localStorage.getItem('studio_username') || DEFAULT_USERNAME; }
-function getPassword() { return localStorage.getItem('studio_password') || DEFAULT_PASSWORD; }
-
-function doLogin() {
-  const user = document.getElementById('loginUser').value.trim();
-  const pass = document.getElementById('loginPass').value;
-  if (user === getUsername() && pass === getPassword()) {
-    localStorage.setItem('studio_auth', '1');
-    document.getElementById('loginScreen').style.display = 'none';
-    document.getElementById('app').style.display = 'flex';
-    initApp();
-  } else {
-    document.getElementById('loginError').style.display = 'block';
-    document.getElementById('loginPass').value = '';
-    document.getElementById('loginPass').focus();
-  }
-}
-
 function doLogout() {
-  localStorage.removeItem('studio_auth');
+  // Browser caches HTTP Basic Auth for the session; it is fully cleared when the
+  // browser is closed. Reloading prompts again only after the cache expires.
   location.reload();
-}
-
-function changeCredentials() {
-  const newUser = document.getElementById('newUser').value.trim();
-  const p1 = document.getElementById('newPass').value;
-  const p2 = document.getElementById('newPass2').value;
-  if (!newUser) return showToast('Εισάγετε username', 'error');
-  if (!p1) return showToast('Εισάγετε κωδικό', 'error');
-  if (p1 !== p2) return showToast('Οι κωδικοί δεν ταιριάζουν', 'error');
-  if (p1.length < 6) return showToast('Ο κωδικός πρέπει να έχει τουλάχιστον 6 χαρακτήρες', 'error');
-  localStorage.setItem('studio_username', newUser);
-  localStorage.setItem('studio_password', p1);
-  document.getElementById('newUser').value = '';
-  document.getElementById('newPass').value = '';
-  document.getElementById('newPass2').value = '';
-  showToast('Username & κωδικός άλλαξαν επιτυχώς', 'success');
 }
 
 // ── INIT ─────────────────────────────────────────────────
@@ -509,8 +452,6 @@ function initApp() {
   document.getElementById('ghToken').value = localStorage.getItem('gh_token') || '';
   document.getElementById('ghUser').value  = localStorage.getItem('gh_user')  || 'kostas1685';
   document.getElementById('ghRepo').value  = localStorage.getItem('gh_repo')  || 'ElpidaEvangelou';
-  // Show current username as placeholder
-  document.getElementById('newUser').placeholder = 'Τρέχον: ' + getUsername();
   // Load articles from GitHub
   loadArticles();
   // SEO meta counter
@@ -784,11 +725,9 @@ function showToast(msg, type) {
 }
 
 // ── BOOT ─────────────────────────────────────────────────
-if (localStorage.getItem('studio_auth') === '1') {
-  document.getElementById('loginScreen').style.display = 'none';
-  document.getElementById('app').style.display = 'flex';
-  initApp();
-}
+// Access is already authenticated server-side by middleware, so boot straight in.
+document.getElementById('app').style.display = 'flex';
+initApp();
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeModal();
 });
