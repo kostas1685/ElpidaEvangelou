@@ -193,8 +193,13 @@ function readTime(html) {
 }
 
 async function loadArticle() {
+  // Support both pretty URLs (/arthra/<slug>) and the legacy ?id= query.
   const params = new URLSearchParams(window.location.search);
-  const id = params.get('id');
+  let id = params.get('id');
+  if (!id) {
+    const m = window.location.pathname.match(/\/arthra\/([^\/]+)\/?$/);
+    if (m && m[1] !== 'artro') id = decodeURIComponent(m[1]);
+  }
 
   if (!id) { showNotFound(); return; }
 
@@ -207,13 +212,15 @@ async function loadArticle() {
   const article = articles.find(a => a.id === id);
   if (!article) { showNotFound(); return; }
 
+  // Canonical pretty URL for this article
+  const artUrl = 'https://www.evangeloulaw.gr/arthra/' + id;
+
   // Update page meta
   document.getElementById('pageTitle').textContent = article.title + ' | Ελπίδα Ευαγγέλου – Δικηγορικό Γραφείο';
   if (article.excerpt) document.getElementById('pageDesc').content = article.excerpt;
-  document.getElementById('pageCanonical').href = 'https://www.evangeloulaw.gr/arthra/artro/?id=' + id;
+  document.getElementById('pageCanonical').href = artUrl;
 
   // Update Open Graph / Twitter per-article
-  const artUrl = 'https://www.evangeloulaw.gr/arthra/artro/?id=' + id;
   document.getElementById('ogTitle').content = article.title + ' | Ελπίδα Ευαγγέλου';
   document.getElementById('twTitle').content = article.title + ' | Ελπίδα Ευαγγέλου';
   document.getElementById('ogUrl').content = artUrl;
@@ -228,6 +235,7 @@ async function loadArticle() {
     "@type": "Article",
     "headline": article.title,
     "description": article.excerpt || '',
+    "mainEntityOfPage": artUrl,
     "datePublished": article.date,
     "author": { "@type": "Person", "name": "Ελπίδα Ευαγγέλου" },
     "publisher": {

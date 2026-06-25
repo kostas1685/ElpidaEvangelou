@@ -309,7 +309,7 @@ function renderArticles(list) {
   let html = '';
 
   sorted.forEach((a, i) => {
-    const url = `/arthra/artro/?id=${a.id}`;
+    const url = `/arthra/${a.id}`;
     const num = String(i + 1).padStart(2, '0');
     const label = i === 0 ? 'Πιο Πρόσφατο' : `${readTime(a.content)} λεπτά ανάγνωση`;
     html += `

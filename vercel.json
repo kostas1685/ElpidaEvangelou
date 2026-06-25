@@ -7,6 +7,9 @@
       "permanent": true
     }
   ],
+  "rewrites": [
+    { "source": "/arthra/:slug", "destination": "/arthra/artro/index.html" }
+  ],
   "functions": {
     "api/contact.js": { "maxDuration": 10 }
   }
