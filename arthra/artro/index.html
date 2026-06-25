@@ -215,18 +215,23 @@ async function loadArticle() {
   // Canonical pretty URL for this article
   const artUrl = 'https://www.evangeloulaw.gr/arthra/' + id;
 
+  // SEO title/description — use metaTitle/meta if set, else fall back
+  const pageTitle = article.metaTitle ? article.metaTitle : (article.title + ' | Ελπίδα Ευαγγέλου – Δικηγορικό Γραφείο');
+  const ogTitle   = article.metaTitle ? article.metaTitle : (article.title + ' | Ελπίδα Ευαγγέλου');
+  const metaDesc  = article.meta || article.excerpt || '';
+
   // Update page meta
-  document.getElementById('pageTitle').textContent = article.title + ' | Ελπίδα Ευαγγέλου – Δικηγορικό Γραφείο';
-  if (article.excerpt) document.getElementById('pageDesc').content = article.excerpt;
+  document.getElementById('pageTitle').textContent = pageTitle;
+  if (metaDesc) document.getElementById('pageDesc').content = metaDesc;
   document.getElementById('pageCanonical').href = artUrl;
 
   // Update Open Graph / Twitter per-article
-  document.getElementById('ogTitle').content = article.title + ' | Ελπίδα Ευαγγέλου';
-  document.getElementById('twTitle').content = article.title + ' | Ελπίδα Ευαγγέλου';
+  document.getElementById('ogTitle').content = ogTitle;
+  document.getElementById('twTitle').content = ogTitle;
   document.getElementById('ogUrl').content = artUrl;
-  if (article.excerpt) {
-    document.getElementById('ogDesc').content = article.excerpt;
-    document.getElementById('twDesc').content = article.excerpt;
+  if (metaDesc) {
+    document.getElementById('ogDesc').content = metaDesc;
+    document.getElementById('twDesc').content = metaDesc;
   }
 
   // Schema

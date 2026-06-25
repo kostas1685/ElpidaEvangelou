@@ -365,6 +365,11 @@ body { font-family: 'Raleway', sans-serif; background: var(--bg); color: var(--n
           <div class="side-card">
             <div class="side-card-title">SEO</div>
             <div class="field-group">
+              <label class="field-label">Meta Title (SEO)</label>
+              <input type="text" class="field-input" id="artMetaTitle" placeholder="SEO τίτλος για Google — αν κενό, χρησιμοποιείται ο τίτλος">
+              <div style="font-size:10px;color:var(--muted);margin-top:4px;">Εμφανίζεται ως ο τίτλος στα αποτελέσματα Google (50-60 χαρ.)</div>
+            </div>
+            <div class="field-group">
               <label class="field-label">Meta Description</label>
               <textarea class="field-input" id="artMeta" rows="3" placeholder="Περιγραφή για Google (150-160 χαρακτήρες)..." style="resize:vertical;"></textarea>
               <div style="font-size:10px;color:var(--muted);margin-top:4px;"><span id="metaCount">0</span>/160</div>
@@ -566,6 +571,7 @@ function newArticle() {
   document.getElementById('artCategory').value = 'Αστικό Δίκαιο';
   document.getElementById('artSlug').value    = '';
   document.getElementById('slugPreview').textContent = '...';
+  document.getElementById('artMetaTitle').value = '';
   document.getElementById('artMeta').value    = '';
   document.getElementById('metaCount').textContent = '0';
   setEditorStatus(false);
@@ -582,6 +588,7 @@ function editArticle(id) {
   document.getElementById('artCategory').value = a.category || 'Αστικό Δίκαιο';
   document.getElementById('artSlug').value    = a.slug   || '';
   document.getElementById('slugPreview').textContent = a.slug || '...';
+  document.getElementById('artMetaTitle').value = a.metaTitle || '';
   document.getElementById('artMeta').value    = a.meta   || '';
   document.getElementById('metaCount').textContent = (a.meta || '').length;
   setEditorStatus(a.published);
@@ -607,6 +614,7 @@ function getFormData(published) {
   return {
     id:        editingId || generateId(),
     title:     document.getElementById('artTitle').value.trim(),
+    metaTitle: document.getElementById('artMetaTitle').value.trim(),
     excerpt:   document.getElementById('artExcerpt').value.trim(),
     content:   document.getElementById('artContent').innerHTML,
     category:  document.getElementById('artCategory').value,
@@ -742,8 +750,11 @@ function _readMin(html) {
 function buildArticleHtml(a) {
   const slug = a.id;
   const url  = 'https://www.evangeloulaw.gr/arthra/' + slug;
-  const t    = _esc(a.title);
-  const d    = _esc(a.excerpt);
+  const ht   = _esc(a.title);  // visible heading (H1 + breadcrumb)
+  // SEO <title> / og:title — use metaTitle verbatim if set, else title + brand suffix
+  const pageTitle = a.metaTitle ? _esc(a.metaTitle) : (_esc(a.title) + ' | Ελπίδα Ευαγγέλου – Δικηγορικό Γραφείο');
+  const ogTitle   = a.metaTitle ? _esc(a.metaTitle) : (_esc(a.title) + ' | Ελπίδα Ευαγγέλου');
+  const d    = _esc(a.meta || a.excerpt);  // meta description (SEO field, fallback to excerpt)
   const eye  = _esc((a.category || '') + ' · Άρθρο');
   const meta = _elDate(a.date) + '<span>·</span>' + _readMin(a.content) + ' λεπτά ανάγνωση';
   const schema = JSON.stringify({
@@ -764,17 +775,17 @@ function buildArticleHtml(a) {
 '<meta charset="UTF-8">\n' +
 '<meta name="viewport" content="width=device-width, initial-scale=1.0">\n' +
 '<script src="/consent.js" defer><\/script>\n' +
-'<title>__TITLE__ | Ελπίδα Ευαγγέλου – Δικηγορικό Γραφείο</title>\n' +
+'<title>__PAGETITLE__</title>\n' +
 '<meta name="description" content="__DESC__">\n' +
 '<link rel="canonical" href="__URL__">\n' +
 '<meta property="og:type" content="article">\n' +
 '<meta property="og:locale" content="el_GR">\n' +
 '<meta property="og:site_name" content="Δικηγορικό Γραφείο Ελπίδα Ευαγγέλου">\n' +
-'<meta property="og:title" content="__TITLE__ | Ελπίδα Ευαγγέλου">\n' +
+'<meta property="og:title" content="__OGTITLE__">\n' +
 '<meta property="og:description" content="__DESC__">\n' +
 '<meta property="og:url" content="__URL__">\n' +
 '<meta name="twitter:card" content="summary">\n' +
-'<meta name="twitter:title" content="__TITLE__ | Ελπίδα Ευαγγέλου">\n' +
+'<meta name="twitter:title" content="__OGTITLE__">\n' +
 '<meta name="twitter:description" content="__DESC__">\n' +
 '<link rel="icon" type="image/svg+xml" href="/favicon.svg">\n' +
 '<link rel="apple-touch-icon" href="/favicon.svg">\n' +
@@ -789,9 +800,9 @@ function buildArticleHtml(a) {
 '  <div class="nav-links"><a href="/">Αρχική</a><a href="/#about">Σχετικά</a><a href="/#practice">Τομείς Δράσης</a><a href="/arthra">Άρθρα</a><a href="/epikoinonia">Επικοινωνία</a></div>\n' +
 '  <a href="/epikoinonia" class="nav-cta">Επικοινωνία &rarr;</a>\n' +
 '</nav>\n' +
-'<nav class="breadcrumb" aria-label="breadcrumb"><a href="/">Αρχική</a><span>›</span><a href="/arthra">Άρθρα</a><span>›</span><span>__TITLE__</span></nav>\n' +
+'<nav class="breadcrumb" aria-label="breadcrumb"><a href="/">Αρχική</a><span>›</span><a href="/arthra">Άρθρα</a><span>›</span><span>__HTITLE__</span></nav>\n' +
 '<main id="main-content">\n' +
-'<section class="page-hero"><div class="page-eyebrow">__EYEBROW__</div><h1>__TITLE__</h1><div class="hero-meta">__META__</div></section>\n' +
+'<section class="page-hero"><div class="page-eyebrow">__EYEBROW__</div><h1>__HTITLE__</h1><div class="hero-meta">__META__</div></section>\n' +
 '<div class="article-wrap"><a href="/arthra" class="back-link">← Πίσω στα Άρθρα</a><div class="article-body">__BODY__</div></div>\n' +
 '<section class="cta-section"><h2>Χρειάζεστε <em>Νομική Συμβουλή;</em></h2><p>Επικοινωνήστε σήμερα για εμπιστευτική συνάντηση χωρίς δέσμευση.</p><div class="cta-buttons"><a href="tel:+306932692757" class="btn-gold">&#9990; 6932 692 757</a><a href="/epikoinonia" class="btn-white">Φόρμα Επικοινωνίας &rarr;</a></div></section>\n' +
 '</main>\n' +
@@ -800,7 +811,9 @@ function buildArticleHtml(a) {
 '</html>\n';
 
   return tpl
-    .split('__TITLE__').join(t)
+    .split('__PAGETITLE__').join(pageTitle)
+    .split('__OGTITLE__').join(ogTitle)
+    .split('__HTITLE__').join(ht)
     .split('__DESC__').join(d)
     .split('__URL__').join(url)
     .split('__EYEBROW__').join(eye)
