@@ -77,7 +77,7 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); 
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .nav-cta { display: none; }
-  .hamburger { display: flex; }
+  .hamburger { display: flex !important; }
   .article-wrap { padding: 40px 5vw 56px; }
 }
 @media (min-width: 769px) {

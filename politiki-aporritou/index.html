@@ -72,7 +72,7 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); 
 .footer-links { display: flex; gap: 24px; }
 .footer-links a { font-size: 10px; color: rgba(255,255,255,0.4); text-decoration: none; letter-spacing: 1px; transition: color 0.2s; }
 .footer-links a:hover { color: var(--gold); }
-@media (max-width: 768px) { .nav-links { display: none; } .nav-cta { display: none; } .hamburger { display: flex; } }
+@media (max-width: 768px) { .nav-links { display: none; } .nav-cta { display: none; } .hamburger { display: flex !important; } }
 @keyframes fadeSlideLeft { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
 .breadcrumb { animation: fadeSlideLeft 0.4s ease both; }
 .page-hero { animation: fadeSlideLeft 0.5s ease 0.07s both; }
