@@ -38,7 +38,16 @@
     <a href="/epikoinonia">Επικοινωνία</a>
   </div>
   <a href="/epikoinonia" class="nav-cta">Επικοινωνία &rarr;</a>
+  <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Μενού" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+    <a href="/">Αρχική</a>
+    <a href="/#about">Σχετικά</a>
+    <a href="/#practice">Τομείς Δράσης</a>
+    <a href="/arthra">Άρθρα</a>
+    <a href="/epikoinonia">Επικοινωνία</a>
+  </div>
+
 
 <nav class="breadcrumb" aria-label="breadcrumb">
   <a href="/">Αρχική</a>
@@ -79,5 +88,25 @@
     <a href="/epikoinonia">Επικοινωνία</a>
   </div>
 </footer>
+<script>
+function openMobileMenu(){
+  document.querySelector('nav').classList.add('menu-open');
+  document.querySelector('.hamburger').classList.add('open');
+  document.querySelector('.mobile-menu').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMobileMenu(){
+  document.querySelector('nav').classList.remove('menu-open');
+  document.querySelector('.hamburger').classList.remove('open');
+  document.querySelector('.mobile-menu').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function toggleMobileMenu(){
+  document.querySelector('.mobile-menu').classList.contains('open') ? closeMobileMenu() : openMobileMenu();
+}
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMobileMenu(); });
+document.querySelectorAll('.mobile-menu a').forEach(function(a){ a.addEventListener('click', closeMobileMenu); });
+document.querySelector('.mobile-menu').addEventListener('click', function(e){ if (e.target.classList.contains('mobile-menu')) closeMobileMenu(); });
+</script>
 </body>
 </html>

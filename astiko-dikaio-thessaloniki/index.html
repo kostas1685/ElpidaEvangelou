@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="el">
 <head>
 <meta charset="UTF-8">
@@ -134,7 +134,7 @@
   .footer-links a:hover { color: var(--muted-gold); }
 
   @media (max-width: 768px) {
-    .nav-links { display: none; }
+    .nav-links { display: none; } .nav-cta { display: none; }
     .content-grid { grid-template-columns: 1fr; }
     .areas-grid { grid-template-columns: 1fr 1fr; }
   }
@@ -150,6 +150,37 @@
   .other-areas     { animation: fadeSlideLeft 0.55s ease 0.1s  both; }
   .cta-section     { animation: fadeSlideLeft 0.5s  ease 0.05s both; }
   footer           { animation: fadeSlideLeft 0.45s ease 0.05s both; }
+nav.menu-open { z-index: 2100; }
+.hamburger { display: none; flex-direction: column; justify-content: center; gap: 6px; width: 30px; height: 24px; background: none; border: none; cursor: pointer; padding: 0; }
+.hamburger span { display: block; width: 100%; height: 2px; background: var(--navy); transition: transform 0.3s ease, opacity 0.3s ease; }
+.hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+.mobile-menu {
+  position: fixed; inset: 0; background: var(--navy); z-index: 2000;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+  clip-path: circle(0px at calc(100% - 38px) 34px);
+  transition: clip-path 0.6s cubic-bezier(0.65,0,0.35,1);
+  visibility: hidden;
+}
+.mobile-menu.open { visibility: visible; clip-path: circle(150% at calc(100% - 38px) 34px); }
+.mobile-menu a {
+  color: var(--white); text-decoration: none; font-family: 'Cormorant Garamond', serif;
+  font-size: 26px; font-weight: 300; letter-spacing: 0.4px;
+  opacity: 0; transform: translateY(16px); transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.mobile-menu.open a { opacity: 1; transform: translateY(0); }
+.mobile-menu.open a:nth-child(1) { transition-delay: .12s; }
+.mobile-menu.open a:nth-child(2) { transition-delay: .17s; }
+.mobile-menu.open a:nth-child(3) { transition-delay: .22s; }
+.mobile-menu.open a:nth-child(4) { transition-delay: .27s; }
+.mobile-menu.open a:nth-child(5) { transition-delay: .32s; }
+.mobile-menu a:last-of-type {
+  margin-top: 8px; background: var(--muted-gold); color: var(--white);
+  padding: 14px 36px; font-family: 'Raleway', sans-serif; font-size: 11px;
+  letter-spacing: 2.5px; text-transform: uppercase; font-weight: 600;
+}
+@media (min-width: 769px) { .hamburger, .mobile-menu { display: none !important; } }
 </style>
 </head>
 <body>
@@ -169,7 +200,16 @@
     <a href="/epikoinonia">Επικοινωνία</a>
   </div>
   <a href="/epikoinonia" class="nav-cta">Επικοινωνία &rarr;</a>
+  <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Μενού" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+    <a href="/">Αρχική</a>
+    <a href="/#about">Σχετικά</a>
+    <a href="/#practice">Τομείς Δράσης</a>
+    <a href="/arthra">Άρθρα</a>
+    <a href="/epikoinonia">Επικοινωνία</a>
+  </div>
+
 
 <!-- BREADCRUMB -->
 <nav class="breadcrumb" aria-label="breadcrumb">
@@ -272,5 +312,25 @@
   </div>
 </footer>
 
+<script>
+function openMobileMenu(){
+  document.querySelector('nav').classList.add('menu-open');
+  document.querySelector('.hamburger').classList.add('open');
+  document.querySelector('.mobile-menu').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMobileMenu(){
+  document.querySelector('nav').classList.remove('menu-open');
+  document.querySelector('.hamburger').classList.remove('open');
+  document.querySelector('.mobile-menu').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function toggleMobileMenu(){
+  document.querySelector('.mobile-menu').classList.contains('open') ? closeMobileMenu() : openMobileMenu();
+}
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMobileMenu(); });
+document.querySelectorAll('.mobile-menu a').forEach(function(a){ a.addEventListener('click', closeMobileMenu); });
+document.querySelector('.mobile-menu').addEventListener('click', function(e){ if (e.target.classList.contains('mobile-menu')) closeMobileMenu(); });
+</script>
 </body>
 </html>

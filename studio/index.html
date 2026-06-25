@@ -799,7 +799,9 @@ function buildArticleHtml(a) {
 '  <a href="/" class="logo"><div class="logo-icon">ΕΕ</div><div class="logo-text">Ελπίδα Ευαγγέλου<span>Δικηγορικό Γραφείο</span></div></a>\n' +
 '  <div class="nav-links"><a href="/">Αρχική</a><a href="/#about">Σχετικά</a><a href="/#practice">Τομείς Δράσης</a><a href="/arthra">Άρθρα</a><a href="/epikoinonia">Επικοινωνία</a></div>\n' +
 '  <a href="/epikoinonia" class="nav-cta">Επικοινωνία &rarr;</a>\n' +
+'  <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Μενού" aria-expanded="false"><span></span><span></span><span></span></button>\n' +
 '</nav>\n' +
+'<div class="mobile-menu" id="mobileMenu"><a href="/">Αρχική</a><a href="/#about">Σχετικά</a><a href="/#practice">Τομείς Δράσης</a><a href="/arthra">Άρθρα</a><a href="/epikoinonia">Επικοινωνία</a></div>\n' +
 '<nav class="breadcrumb" aria-label="breadcrumb"><a href="/">Αρχική</a><span>›</span><a href="/arthra">Άρθρα</a><span>›</span><span>__HTITLE__</span></nav>\n' +
 '<main id="main-content">\n' +
 '<section class="page-hero"><div class="page-eyebrow">__EYEBROW__</div><h1>__HTITLE__</h1><div class="hero-meta">__META__</div></section>\n' +
@@ -807,6 +809,14 @@ function buildArticleHtml(a) {
 '<section class="cta-section"><h2>Χρειάζεστε <em>Νομική Συμβουλή;</em></h2><p>Επικοινωνήστε σήμερα για εμπιστευτική συνάντηση χωρίς δέσμευση.</p><div class="cta-buttons"><a href="tel:+306932692757" class="btn-gold">&#9990; 6932 692 757</a><a href="/epikoinonia" class="btn-white">Φόρμα Επικοινωνίας &rarr;</a></div></section>\n' +
 '</main>\n' +
 '<footer><div class="footer-logo">Ελπίδα <span>Ευαγγέλου</span></div><div class="footer-copy">&copy; 2026 Ελπίδα Ευαγγέλου &ndash; All Rights Reserved</div><div class="footer-links"><a href="/">Αρχική</a><a href="/arthra">Άρθρα</a><a href="/epikoinonia">Επικοινωνία</a></div></footer>\n' +
+'<script>\n' +
+'function openMobileMenu(){document.querySelector(\'nav\').classList.add(\'menu-open\');document.querySelector(\'.hamburger\').classList.add(\'open\');document.querySelector(\'.mobile-menu\').classList.add(\'open\');document.body.style.overflow=\'hidden\';}\n' +
+'function closeMobileMenu(){document.querySelector(\'nav\').classList.remove(\'menu-open\');document.querySelector(\'.hamburger\').classList.remove(\'open\');document.querySelector(\'.mobile-menu\').classList.remove(\'open\');document.body.style.overflow=\'\';}\n' +
+'function toggleMobileMenu(){document.querySelector(\'.mobile-menu\').classList.contains(\'open\')?closeMobileMenu():openMobileMenu();}\n' +
+'document.addEventListener(\'keydown\',function(e){if(e.key===\'Escape\')closeMobileMenu();});\n' +
+'document.querySelectorAll(\'.mobile-menu a\').forEach(function(a){a.addEventListener(\'click\',closeMobileMenu);});\n' +
+'document.querySelector(\'.mobile-menu\').addEventListener(\'click\',function(e){if(e.target.classList.contains(\'mobile-menu\'))closeMobileMenu();});\n' +
+'<\/script>\n' +
 '</body>\n' +
 '</html>\n';
 
