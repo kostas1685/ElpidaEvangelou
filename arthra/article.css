@@ -90,14 +90,17 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); 
 .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-nav.menu-open { z-index: 2100; }
 .mobile-menu {
-  position: fixed; inset: 0; background: var(--navy); z-index: 2000;
+  position: fixed; inset: 0; background: var(--navy); z-index: 3000;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px;
   clip-path: circle(0px at calc(100% - 38px) 34px);
   transition: clip-path 0.6s cubic-bezier(0.65,0,0.35,1);
   visibility: hidden;
 }
+.menu-close { position: absolute; top: 14px; right: 20px; width: 44px; height: 44px; background: none; border: none; cursor: pointer; z-index: 5; }
+.menu-close::before, .menu-close::after { content: ''; position: absolute; left: 9px; top: 21px; width: 26px; height: 2px; background: var(--white); }
+.menu-close::before { transform: rotate(45deg); }
+.menu-close::after { transform: rotate(-45deg); }
 .mobile-menu.open { visibility: visible; clip-path: circle(150% at calc(100% - 38px) 34px); }
 .mobile-menu a {
   color: var(--white); text-decoration: none; font-family: 'Cormorant Garamond', serif;

@@ -77,14 +77,14 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); 
 .breadcrumb { animation: fadeSlideLeft 0.4s ease both; }
 .page-hero { animation: fadeSlideLeft 0.5s ease 0.07s both; }
 .content-wrap { animation: fadeSlideLeft 0.6s ease 0.18s both; }
-nav.menu-open { z-index: 2100; }
+
 .hamburger { display: none; flex-direction: column; justify-content: center; gap: 6px; width: 30px; height: 24px; background: none; border: none; cursor: pointer; padding: 0; }
 .hamburger span { display: block; width: 100%; height: 2px; background: var(--navy); transition: transform 0.3s ease, opacity 0.3s ease; }
 .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 .mobile-menu {
-  position: fixed; inset: 0; background: var(--navy); z-index: 2000;
+  position: fixed; inset: 0; background: var(--navy); z-index: 3000;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px;
   clip-path: circle(0px at calc(100% - 38px) 34px);
   transition: clip-path 0.6s cubic-bezier(0.65,0,0.35,1);
@@ -107,6 +107,10 @@ nav.menu-open { z-index: 2100; }
   padding: 14px 36px; font-family: 'Raleway', sans-serif; font-size: 11px;
   letter-spacing: 2.5px; text-transform: uppercase; font-weight: 600;
 }
+.menu-close { position: absolute; top: 14px; right: 20px; width: 44px; height: 44px; background: none; border: none; cursor: pointer; z-index: 5; }
+.menu-close::before, .menu-close::after { content: ''; position: absolute; left: 9px; top: 21px; width: 26px; height: 2px; background: var(--white); }
+.menu-close::before { transform: rotate(45deg); }
+.menu-close::after { transform: rotate(-45deg); }
 @media (min-width: 769px) { .hamburger, .mobile-menu { display: none !important; } }
 </style>
 </head>
@@ -134,7 +138,7 @@ nav.menu-open { z-index: 2100; }
     <a href="/#practice">Τομείς Δράσης</a>
     <a href="/arthra">Άρθρα</a>
     <a href="/epikoinonia">Επικοινωνία</a>
-  </div>
+  <button class="menu-close" onclick="closeMobileMenu()" aria-label="Κλείσιμο"></button></div>
 
 
 <nav class="breadcrumb" aria-label="breadcrumb">
