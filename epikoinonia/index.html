@@ -208,18 +208,18 @@ footer           { animation: fadeSlideLeft 0.45s ease 0.05s both; }
   visibility: hidden;
 }
 .mobile-menu.open { visibility: visible; clip-path: circle(150% at calc(100% - 38px) 34px); }
-.mobile-menu a {
+.mobile-menu > a {
   color: var(--white); text-decoration: none; font-family: 'Cormorant Garamond', serif;
   font-size: 26px; font-weight: 300; letter-spacing: 0.4px;
   opacity: 0; transform: translateY(16px); transition: opacity 0.4s ease, transform 0.4s ease;
 }
-.mobile-menu.open a { opacity: 1; transform: translateY(0); }
-.mobile-menu.open a:nth-child(1) { transition-delay: .12s; }
-.mobile-menu.open a:nth-child(2) { transition-delay: .17s; }
-.mobile-menu.open a:nth-child(3) { transition-delay: .22s; }
-.mobile-menu.open a:nth-child(4) { transition-delay: .27s; }
-.mobile-menu.open a:nth-child(5) { transition-delay: .32s; }
-.mobile-menu a:last-of-type {
+.mobile-menu.open > a { opacity: 1; transform: translateY(0); }
+.mobile-menu.open > a:nth-child(1) { transition-delay: .12s; }
+.mobile-menu.open > a:nth-child(2) { transition-delay: .17s; }
+.mobile-menu.open > a:nth-child(3) { transition-delay: .22s; }
+.mobile-menu.open > a:nth-child(4) { transition-delay: .27s; }
+.mobile-menu.open > a:nth-child(5) { transition-delay: .32s; }
+.mobile-menu > a:last-of-type {
   margin-top: 8px; background: var(--muted-gold); color: var(--white);
   padding: 14px 36px; font-family: 'Raleway', sans-serif; font-size: 11px;
   letter-spacing: 2.5px; text-transform: uppercase; font-weight: 600;
@@ -234,6 +234,15 @@ footer           { animation: fadeSlideLeft 0.45s ease 0.05s both; }
 .nav-dropdown:hover > .dropdown-panel { opacity: 1; visibility: visible; transform: translateY(0); }
 .nav-dropdown .dropdown-panel a { padding: 10px 14px; font-size: 11px; letter-spacing: 0.5px; text-transform: none; color: #4A5568; white-space: nowrap; font-weight: 500; transition: background 0.15s ease, color 0.15s ease; }
 .nav-dropdown .dropdown-panel a:hover { background: #EDEEF0; color: #A8895A; }
+.mm-group { display: flex; flex-direction: column; align-items: center; opacity: 0; transform: translateY(16px); transition: opacity 0.4s ease, transform 0.4s ease; transition-delay: .22s; }
+.mobile-menu.open .mm-group { opacity: 1; transform: translateY(0); }
+.mm-toggle { background: none; border: none; cursor: pointer; color: #fff; font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; letter-spacing: 0.4px; display: inline-flex; align-items: center; gap: 8px; }
+.mm-toggle::after { content: '\25BE'; font-size: 15px; transition: transform 0.3s ease; }
+.mm-group.open .mm-toggle::after { transform: rotate(180deg); }
+.mm-sub { display: flex; flex-direction: column; align-items: center; gap: 14px; max-height: 0; overflow: hidden; opacity: 0; margin-top: 0; transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.4s ease; }
+.mm-group.open .mm-sub { max-height: 420px; opacity: 1; margin-top: 18px; }
+.mm-sub a { color: rgba(255,255,255,0.72); text-decoration: none; font-family: 'Raleway', sans-serif; font-size: 14px; font-weight: 400; letter-spacing: 0.3px; }
+.mm-sub a:hover { color: #fff; }
 </style>
 </head>
 <body>
@@ -257,7 +266,7 @@ footer           { animation: fadeSlideLeft 0.45s ease 0.05s both; }
 <div class="mobile-menu" id="mobileMenu">
     <a href="/">Αρχική</a>
     <a href="/#about">Σχετικά</a>
-    <a href="/#practice">Τομείς Δράσης</a>
+    <div class="mm-group"><button class="mm-toggle" onclick="this.parentElement.classList.toggle('open')">Τομείς Δράσης</button><div class="mm-sub"><a href="/agorapwlisies-akineton-thessaloniki">Αγοραπωλησίες Θεσσαλονίκη</a><a href="/agorapwlisies-akineton-xalkidiki">Αγοραπωλησίες Χαλκιδική</a><a href="/astiko-dikaio-thessaloniki">Αστικό Δίκαιο</a><a href="/poiniko-dikaio-thessaloniki">Ποινικό Δίκαιο</a><a href="/emporiko-dikaio-thessaloniki">Εμπορικό Δίκαιο</a><a href="/dioikitiko-dikaio-thessaloniki">Διοικητικό Δίκαιο</a></div></div>
     <a href="/arthra">Άρθρα</a>
     <a href="/epikoinonia">Επικοινωνία</a>
   <button class="menu-close" onclick="closeMobileMenu()" aria-label="Κλείσιμο"></button></div>
@@ -412,7 +421,7 @@ function toggleMobileMenu(){
   document.querySelector('.mobile-menu').classList.contains('open') ? closeMobileMenu() : openMobileMenu();
 }
 document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMobileMenu(); });
-document.querySelectorAll('.mobile-menu a').forEach(function(a){ a.addEventListener('click', closeMobileMenu); });
+document.querySelectorAll('.mobile-menu > a').forEach(function(a){ a.addEventListener('click', closeMobileMenu); });
 document.querySelector('.mobile-menu').addEventListener('click', function(e){ if (e.target.classList.contains('mobile-menu')) closeMobileMenu(); });
 </script>
 </body>

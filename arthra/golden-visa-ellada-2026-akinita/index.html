@@ -43,7 +43,7 @@
 <div class="mobile-menu" id="mobileMenu">
     <a href="/">Αρχική</a>
     <a href="/#about">Σχετικά</a>
-    <a href="/#practice">Τομείς Δράσης</a>
+    <div class="mm-group"><button class="mm-toggle" onclick="this.parentElement.classList.toggle('open')">Τομείς Δράσης</button><div class="mm-sub"><a href="/agorapwlisies-akineton-thessaloniki">Αγοραπωλησίες Θεσσαλονίκη</a><a href="/agorapwlisies-akineton-xalkidiki">Αγοραπωλησίες Χαλκιδική</a><a href="/astiko-dikaio-thessaloniki">Αστικό Δίκαιο</a><a href="/poiniko-dikaio-thessaloniki">Ποινικό Δίκαιο</a><a href="/emporiko-dikaio-thessaloniki">Εμπορικό Δίκαιο</a><a href="/dioikitiko-dikaio-thessaloniki">Διοικητικό Δίκαιο</a></div></div>
     <a href="/arthra">Άρθρα</a>
     <a href="/epikoinonia">Επικοινωνία</a>
   <button class="menu-close" onclick="closeMobileMenu()" aria-label="Κλείσιμο"></button></div>
@@ -105,7 +105,7 @@ function toggleMobileMenu(){
   document.querySelector('.mobile-menu').classList.contains('open') ? closeMobileMenu() : openMobileMenu();
 }
 document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMobileMenu(); });
-document.querySelectorAll('.mobile-menu a').forEach(function(a){ a.addEventListener('click', closeMobileMenu); });
+document.querySelectorAll('.mobile-menu > a').forEach(function(a){ a.addEventListener('click', closeMobileMenu); });
 document.querySelector('.mobile-menu').addEventListener('click', function(e){ if (e.target.classList.contains('mobile-menu')) closeMobileMenu(); });
 </script>
 </body>
