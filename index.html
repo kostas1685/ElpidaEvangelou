@@ -558,6 +558,11 @@
 .menu-close::before { transform: rotate(45deg); }
 .menu-close::after { transform: rotate(-45deg); }
 @media (min-width: 769px) { .hamburger, .mobile-menu { display: none !important; } }
+.nav-dropdown { position: relative; }
+.nav-dropdown > .dropdown-panel { position: absolute; top: 100%; left: 0; min-width: 250px; background: #FFFFFF; border: 1px solid rgba(30,41,59,0.1); box-shadow: 0 12px 34px rgba(30,41,59,0.14); padding: 8px; display: flex; flex-direction: column; opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity 0.22s ease, transform 0.22s ease; z-index: 1200; }
+.nav-dropdown:hover > .dropdown-panel { opacity: 1; visibility: visible; transform: translateY(0); }
+.nav-dropdown .dropdown-panel a { padding: 10px 14px; font-size: 11px; letter-spacing: 0.5px; text-transform: none; color: #4A5568; white-space: nowrap; font-weight: 500; transition: background 0.15s ease, color 0.15s ease; }
+.nav-dropdown .dropdown-panel a:hover { background: #EDEEF0; color: #A8895A; }
 </style>
 </head>
 <body>
@@ -575,7 +580,7 @@
   <div class="nav-links">
     <a href="#" data-i18n="nav_home">Αρχική</a>
     <a href="#about" data-i18n="nav_about" onclick="smoothScroll('about');return false;">Σχετικά</a>
-    <a href="#practice" data-i18n="nav_practice" onclick="smoothScroll('practice');return false;">Τομείς Δράσης</a>
+    <div class="nav-dropdown"><a href="#practice" data-i18n="nav_practice" onclick="smoothScroll('practice');return false;">Τομείς Δράσης</a><div class="dropdown-panel"><a href="/agorapwlisies-akineton-thessaloniki">Αγοραπωλησίες Ακινήτων Θεσσαλονίκη</a><a href="/agorapwlisies-akineton-xalkidiki">Αγοραπωλησίες Ακινήτων Χαλκιδική</a><a href="/astiko-dikaio-thessaloniki">Αστικό Δίκαιο</a><a href="/poiniko-dikaio-thessaloniki">Ποινικό Δίκαιο</a><a href="/emporiko-dikaio-thessaloniki">Εμπορικό Δίκαιο</a><a href="/dioikitiko-dikaio-thessaloniki">Διοικητικό Δίκαιο</a></div></div>
     <a href="/arthra" data-i18n="nav_articles">Άρθρα</a>
     <a href="/epikoinonia" data-i18n="nav_contact">Επικοινωνία</a>
   </div>
